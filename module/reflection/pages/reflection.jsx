@@ -1,11 +1,24 @@
 import useReflectionStore from "@/module/reflection/store/reflectionStore";
+import useAiSummaryStore from "@/module/reflection/store/aiSummaryStore";
 import { ArrowRight } from "lucide-react";
+import { generateReflectionSummary } from "@/app/actions/reflection-summary";
 
 function Reflection() {
-  const { setReflectionText, nextStep } = useReflectionStore();
+  const { setReflectionText, nextStep, reflectionText } = useReflectionStore();
+  const { setAiSummary, setLoading, setError } = useAiSummaryStore();
 
-  const handleNext = () => {
-    nextStep();
+  const handleNext = async () => {
+    try {
+      setLoading(true);
+      const { summary } = await generateReflectionSummary(reflectionText);
+      setAiSummary(summary);
+      nextStep();
+    } catch (error) {
+      setError(error.message);
+      console.error('Failed to generate summary:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,7 +45,7 @@ function Reflection() {
         <div className="w-48 mt-6">
           <button
             onClick={handleNext}
-            className="flex items-center justify-between w-full py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-900 transition duration-300"
+            className="flex items-center justify-between w-full py-2 px-4 bg-blue-600 text-white rounded-full hover:bg-blue-900 transition duration-300"
           >
             Continue <ArrowRight className="w-4 h-4 text-white" />
           </button>

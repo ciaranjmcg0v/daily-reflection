@@ -21,7 +21,7 @@ const useReflectionStore = create((set) => ({
   setReflectionSummary: (summary) => set({ reflectionSummary: summary }),
 
   nextStep: () =>
-    set((state) => ({ currentStep: Math.min(state.currentStep + 1, 4) })), // Adjust max based on steps
+    set((state) => ({ currentStep: Math.min(state.currentStep + 1, 5) })), // Adjust max based on steps
   reset: () =>
     set({
       name: "",

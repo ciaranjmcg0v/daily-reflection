@@ -10,7 +10,7 @@ export default function InitialPage({ onNext }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-evenly w-screen h-screen bg-blue-300 p-4 text-center select-none">
+    <div className="flex flex-col items-center justify-evenly w-screen h-screen bg-white p-4 text-center select-none">
       <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 transition-transform duration-500 transform hover:scale-105 cursor-pointer">
         Welcome to your daily reflection
       </h1>
@@ -23,11 +23,11 @@ export default function InitialPage({ onNext }) {
         type="text"
         onChange={(e) => setName(e.target.value)}
         placeholder="What is your name?"
-        className="text-center font-medium border border-gray-300 p-2 rounded-lg mb-4 w-64 md:w-80"
+        className="text-center font-medium border border-gray-300 p-2 rounded-full mb-4 w-64 md:w-80"
       />
 
       {/* Button */}
-      <button onClick={handleNextStep} className="bg-slate-200 hover:bg-green-800 hover:text-white text-gray-800 font-bold px-4 py-2 rounded-lg transition duration-300">
+      <button onClick={handleNextStep} className="bg-slate-200 hover:bg-green-800 hover:text-white text-gray-800 font-bold px-4 py-2 rounded-full transition duration-300">
         Get started <span className="ml-2">➡️</span>
       </button>
     </div>
